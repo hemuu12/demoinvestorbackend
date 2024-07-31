@@ -13,7 +13,15 @@ connectDB();
 
 // Middleware
 app.use(bodyParser.json());
-app.use(cors());
+
+// Configure CORS
+const corsOptions = {
+  origin: 'https://demoinvestorbackend.vercel.app/', // Replace with your frontend domain
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.use(cors(corsOptions));
 
 // Routes
 app.use('/api/auth', authRoutes);
