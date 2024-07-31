@@ -5,6 +5,7 @@ const connectDB = require('./config/db');
 const authRoutes = require('./routes/auth');
 const profileRoutes = require('./routes/profile');
 const paymentRoutes = require('./routes/payment');
+const tokenRoutes = require('./routes/token');
 
 const app = express();
 
@@ -14,11 +15,12 @@ connectDB();
 // Middleware
 app.use(bodyParser.json());
 
-// Configure CORS
+// CORS Configuration
 const corsOptions = {
-  origin: 'https://demoinvestorbackend.vercel.app/', // Replace with your frontend domain
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  origin: '*', // Allow all origins for testing
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
+  optionsSuccessStatus: 204
 };
 
 app.use(cors(corsOptions));
@@ -27,6 +29,8 @@ app.use(cors(corsOptions));
 app.use('/api/auth', authRoutes);
 app.use('/api/profiles', profileRoutes);
 app.use('/api/payment', paymentRoutes);
-app.use('/api/tokens', require('./routes/token'));
+app.use('/api/tokens', tokenRoutes);
+
+app.options('*', cors(corsOptions)); // Preflight requests
 
 module.exports = app;
