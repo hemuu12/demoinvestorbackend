@@ -30,8 +30,8 @@ exports.purchaseTokens = async (req, res) => {
             firstname: user.username,
             email: user.email,
             phone :"9675286699",
-            surl: 'http://localhost:5000/api/payment/success',
-            furl: 'http://localhost:5000/api/payment/failure',
+            surl: '',
+            furl: '',
             hash
         };
             console.log(paymentRequest,"000000000000")
