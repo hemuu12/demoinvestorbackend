@@ -15,15 +15,7 @@ connectDB();
 // Middleware
 app.use(bodyParser.json());
 
-// CORS Configuration
-const corsOptions = {
-  origin: '*', // Allow all origins for testing
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  optionsSuccessStatus: 204
-};
-
-app.use(cors(corsOptions));
+app.use(cors())
 
 // Routes
 app.use('/api/auth', authRoutes);
